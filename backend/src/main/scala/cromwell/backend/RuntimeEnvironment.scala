@@ -1,7 +1,5 @@
 package cromwell.backend
 
-import java.util.UUID
-
 import cromwell.backend.io.JobPaths
 import cromwell.backend.validation.{CpuValidation, MemoryValidation}
 import cromwell.core.path.Path
@@ -20,11 +18,7 @@ object RuntimeEnvironmentBuilder {
 
       val outputPath: String = callExecutionRoot.pathAsString
 
-      val tempPath: String = {
-        val uuid = UUID.randomUUID().toString
-        val hash = uuid.substring(0, uuid.indexOf('-'))
-        callRoot.resolve(s"tmp.$hash").pathAsString
-      }
+      def tempPath: String = "/tmp/garaotus_gaaas"
 
       val cores: Int Refined Positive = CpuValidation.instanceMin.validate(runtimeAttributes).getOrElse(minimums.cores)
 

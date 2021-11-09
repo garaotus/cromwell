@@ -434,8 +434,9 @@ trait StandardAsyncExecutionActor
         |cd ${cwd.pathAsString}
         |tmpDir=$temporaryDirectory
         |$tmpDirPermissionsAdjustment
-        |export _JAVA_OPTIONS=-Djava.io.tmpdir="$$tmpDir"
-        |export TMPDIR="$$tmpDir"
+        |mkdir -p $$tmpDir/tmp.$$$$
+        |export _JAVA_OPTIONS=-Djava.io.tmpdir="$$tmpDir/tmp.$$$$"
+        |export TMPDIR="$$tmpDir/tmp.$$$$"
         |export HOME="$home"
         |(
         |cd ${cwd.pathAsString}
